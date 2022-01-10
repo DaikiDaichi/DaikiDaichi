@@ -22,14 +22,12 @@ def endingGame():
     operatingNote = 0
     while gameFinisherRepeater:
         gameFinisher = getInput("Wollen Sie nochmal spielen? ")
-        if operatingNote == 1:
-            print("Geben Sie N für Nein oder Y für Ja ein.")
-        elif gameFinisher == "N":
+        if gameFinisher == "N":
             quit()
         elif gameFinisher == "Y":
             gameFinisherRepeater = False
-            operatingNote = 0
-        operatingNote = operatingNote+1
+        else:
+            print("Geben Sie N für Nein oder Y für Ja ein.")
 
 # variablen-mainloop
 Userpath = r"Nutzerprofile/"
@@ -72,6 +70,7 @@ while mainloopswitch:
         break
 
     # Die zwei Würfel
+    input("\nDrücke eine beliebige Taste zum Würfeln.")
     dicenumber = randint(2, 12)
 
     # visuelle Überprüfung
@@ -92,6 +91,6 @@ while mainloopswitch:
         print("Sie haben weder gewonnen noch verloren.\n")
         previousDiceNumber = dicenumber
 
-    print(coins,"cz")
+    print("Sie verlassen uns mit einem Guthaben von ",coins,"cz")
     SaveUserAccountBalance()
     endingGame()
