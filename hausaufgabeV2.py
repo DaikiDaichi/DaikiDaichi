@@ -3,9 +3,21 @@
 # imports
 import os
 import sys
+from datetime import datetime
 from random import randint
 
 #Funktionen
+def rating():
+    rating = getInput("Hat ihnen ihr Aufenthalt gefallen?")
+    with open(Userpath + name + ".txt", "a+") as file:
+        file.seek(0)
+        data = file.read(10)
+        if len(data) > 0:
+            file.write("\n")
+        file.write(str(rating))
+        file.write(datetime.now().strftime(' %d-%m-%Y %H:%M:%S'))
+        file.close()
+
 def SaveUserAccountBalance():
     file = open(Userpath + name + ".txt", "w")
     file.writelines(str(coins))
@@ -23,6 +35,7 @@ def endingGame():
     while gameFinisherRepeater:
         gameFinisher = getInput("Wollen Sie nochmal spielen? ")
         if gameFinisher == "N":
+            rating()
             quit()
         elif gameFinisher == "Y":
             gameFinisherRepeater = False
