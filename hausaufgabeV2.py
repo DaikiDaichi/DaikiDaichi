@@ -31,7 +31,6 @@ def getInput(message):
 
 def endingGame():
     gameFinisherRepeater = True
-    operatingNote = 0
     while gameFinisherRepeater:
         gameFinisher = getInput("Wollen Sie nochmal spielen? ")
         if gameFinisher == "N":
