@@ -83,7 +83,7 @@ while mainloopswitch:
         break
 
     # Die zwei Würfel
-    input("\nDrücke eine beliebige Taste zum Würfeln.")
+    getinput("\nDrücke eine beliebige Taste zum Würfeln.")
     dicenumber = randint(2, 12)
 
     # visuelle Überprüfung
