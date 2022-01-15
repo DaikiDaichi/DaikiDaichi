@@ -8,10 +8,21 @@ from datetime import datetime
 from random import randint
 
 #Funktionen
+def passwordcheck():
+    passwordinput = getInput("Geben Sie ihr Passwort ein:\n")
+    with open(Userpath+".json", "r") as data:
+        openExistingAcc = json.load(data)
+        global password
+        password = openExistingAcc["password"]
+        while passwordinput != password:
+            print("Falsches Passwort")
+            passwordinput = getInput("Geben Sie ihr Passwort ein:\n")
+
 def saveuserdata():
     userdata = {
         "balance": coins,
-        "rating": finalrating
+        "rating": finalrating,
+        "password": password
     }
     with open(Userpath+".json", "w") as file:
         file.writelines(json.dumps(userdata))
@@ -56,7 +67,9 @@ coins = 500
 SearchfileName = Userpath+".json"
 if not os.path.isfile(SearchfileName):
     file = open(SearchfileName, "w+")
+    password = getInput("Legen Sie ihr Passwort fest")
 else:
+    passwordcheck()
     print("Sie werden auf einem bereits existierenden Account spielen")
     with open(Userpath+".json", "r") as data:
         openExistingAcc = json.load(data)
@@ -85,7 +98,7 @@ while mainloopswitch:
         break
 
     # Die zwei Würfel
-    getinput("\nDrücke eine beliebige Taste zum Würfeln.")
+    input("\nDrücke eine beliebige Taste zum Würfeln.")
     dicenumber = randint(2, 12)
 
     # visuelle Überprüfung
